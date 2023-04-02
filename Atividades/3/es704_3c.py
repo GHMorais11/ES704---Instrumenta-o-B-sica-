@@ -3,7 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import stft
 
-plt.style.use('dark_background')
+# Estilo
+plt.style.use('default')
 
 # Carrega os dados do arquivo .csv
 dados = pd.read_csv('Data03.csv')
@@ -24,8 +25,10 @@ f, t, Zxx = stft(y, fs=fs, window=window, nperseg=nperseg, noverlap=noverlap)
 # Plota o espectrograma
 fig, ax = plt.subplots()
 im = ax.pcolormesh(t, f, np.abs(Zxx), cmap='jet')
-ax.set_xlabel('Tempo (s)')
-ax.set_ylabel('Frequência (Hz)')
-ax.set_title('Espectrograma de y(t)')
-fig.colorbar(im)
+ax.tick_params(axis='both', labelsize=14)
+ax.set_xlabel('Tempo (s)', fontsize=12, fontweight='bold', labelpad=12)
+ax.set_ylabel('Frequência (Hz)', fontsize=12, fontweight='bold', labelpad=12)
+ax.set_title('Espectrograma de y(t)', fontsize=18, fontweight='bold', pad=20)
+cbar = fig.colorbar(im)
+cbar.ax.tick_params(labelsize=14)
 plt.show()
