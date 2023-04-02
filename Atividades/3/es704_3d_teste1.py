@@ -2,7 +2,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-# Definir o número de pontos
+# Definir o número de ponto
 n_points = 100
 
 # Definir a frequência da função seno
