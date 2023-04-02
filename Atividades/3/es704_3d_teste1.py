@@ -2,7 +2,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-# Definir o número de ponto
+# Definir o número de pontos
 n_points = 100
 
 # Definir a frequência da função seno
@@ -21,8 +21,8 @@ plt.plot(time, data, label='Dados originais')
 fft_data = np.fft.fft(data)
 
 # Obter as amplitudes e frequências das componentes senoidais
-amplitudes = np.abs(fft_data) / n_points
-frequencies = np.fft.fftfreq(n_points, 1 / n_points)
+amplitudes = 2*np.abs(fft_data) / n_points
+frequencies = np.fft.fftfreq(n_points, 1 / freq)
 
 # Definir o número de componentes senoidais a serem usadas na reconstrução
 n_components = 10
@@ -32,7 +32,7 @@ reconstructed_data = np.zeros_like(data)
 
 # Gerar a forma de onda reconstruída usando as amplitudes e frequências das componentes senoidais
 for i in range(n_components):
-    reconstructed_data += amplitudes[i] * np.cos(2 * math.pi * frequencies[i] * time)
+    reconstructed_data += amplitudes[i] * np.sin(2 * math.pi * frequencies[i] * time)
 
 # Plotar a forma de onda reconstruída
 plt.plot(time, reconstructed_data, label='Dados reconstruídos')
