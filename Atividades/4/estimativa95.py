@@ -25,8 +25,9 @@ intervalo = [mean - t_critico * std / (n**0.5), mean + t_critico * std / (n**0.5
 
 # exibição do resultado
 print("\nPara a temperatura {}\u00B0C:\n".format(data_parts[faixaTemperatura]['T'][faixaTemperatura*50]))
-print("A média é: {:.6f} mV".format(mean))
-print("O desvio padrão é: {:.6f} mV".format(std))
-print("O valor da distribuição t-Student é: {:.6f}".format(t_critico))
-print("O intervalo de confiança com um nível de probabilidade de 95% é: {:.6f} ± {:.6f} mV ---> {} \n".format(mean, t_critico*std, intervalo))
+print("A média é:  {:.6f} mV".format(mean))
+print("O desvio padrão é:  {:.6f} mV".format(std))
+print("O valor da distribuição t-Student é:  {:.6f}".format(t_critico))
+print("A estimativa do valor real de V com nível de probabilidade de 95% é:  {:.6f} ± {:.6f} mV".format(mean,t_critico*std))
+print("O intervalo de confiança com um nível de probabilidade de 95% é:   [{:.6f} , {:.6f}] mV\n".format(intervalo[0],intervalo[1]))
 
