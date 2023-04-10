@@ -7,7 +7,7 @@ data = pd.read_csv("Data04.csv")
 data_parts = np.array_split(data, 4)
 
 #faixa a ser calculada (0=0oC; 1=20oC; 2=40oC; 3=60oC)
-faixaTemperatura = 0
+faixaTemperatura = 3
 
 # cálculo da média e do desvio padrão
 mean = data_parts[faixaTemperatura]['V'].mean()
@@ -24,7 +24,7 @@ t_critico = t.ppf(0.975, df)
 intervalo = [mean - t_critico * std / (n**0.5), mean + t_critico * std / (n**0.5)]
 
 # exibição do resultado
-print("\nPara a temperatura {}\u00B0C:\n".format(data_parts[faixaTemperatura]['T'][0]))
+print("\nPara a temperatura {}\u00B0C:\n".format(data_parts[faixaTemperatura]['T'][faixaTemperatura*50]))
 print("A média é: {:.6f} mV".format(mean))
 print("O desvio padrão é: {:.6f} mV".format(std))
 print("O valor da distribuição t-Student é: {:.6f}".format(t_critico))
