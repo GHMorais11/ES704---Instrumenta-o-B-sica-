@@ -34,7 +34,8 @@ ax.set_ylabel('Tensão [mV]', fontsize=20, color='black', labelpad=12, fontweigh
 ax.set_title('Curva de Calibração Sensor de Temperatura', fontsize=24, color='black', fontweight='bold', pad=20) 
 ax.grid(color='grey', linestyle='-', linewidth=0.5, alpha=0.5) 
 
-plt.plot(T, V, 'o', label='Valores Medidos')
+plt.plot(T, V, 'o', markersize=10, label='Valores Medidos')
 plt.plot(T, trendline, '-', label='Linha de Tendência')
 plt.legend(fontsize=16)
+plt.text(-3, 2.55, f'y = {coefs[0]:.5f}x + {coefs[1]:.5f}', fontsize=16)
 plt.show()
