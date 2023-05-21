@@ -26,23 +26,47 @@ valores_deflexao_metro = np.array(valores_deflexao) / 1000
 fator_conversao = 7.6526e-14
 valores_pressao = np.array(valores_deflexao_metro) / fator_conversao
 
-# Criação do gráfico
-plt.plot(tempo, valores_pressao)
+# Cálculo do vetor de força
+raio = 3  # Raio da região circular em mm
+area = np.pi * (raio ** 2)  # Área da região circular em mm^2
+valores_forca = valores_pressao * area
 
-# Configuração do gráfico
+# Gráfico da pressão
+plt.figure()
+plt.plot(tempo, valores_pressao)
 plt.title('Gráfico da Pressão ao longo do Tempo')
 plt.xlabel('Tempo (s)')
 plt.ylabel('Pressão (Pa)')
 
-# Cálculo das estatísticas
+# Cálculo das estatísticas da pressão
 pressao_maxima = np.max(valores_pressao)
 pressao_media = np.mean(valores_pressao)
 pressao_rms = np.sqrt(np.mean(np.square(valores_pressao)))
 
-# Impressão das estatísticas
+# Impressão das estatísticas da pressão
 print(f"Pressão Máxima: {pressao_maxima:.2e} Pa")
 print(f"Pressão Média: {pressao_media:.2e} Pa")
 print(f"Pressão RMS: {pressao_rms:.2e} Pa")
 
-# Exibição do gráfico
+# Exibição do gráfico da pressão em uma janela separada
+plt.show()
+
+# Gráfico da força
+plt.figure()
+plt.plot(tempo, valores_forca)
+plt.title('Gráfico da Força ao longo do Tempo')
+plt.xlabel('Tempo (s)')
+plt.ylabel('Força (N)')
+
+# Cálculo das estatísticas da força
+forca_maxima = np.max(valores_forca)
+forca_media = np.mean(valores_forca)
+forca_rms = np.sqrt(np.mean(np.square(valores_forca)))
+
+# Impressão das estatísticas da força
+print(f"Força Máxima: {forca_maxima:.2f} N")
+print(f"Força Média: {forca_media:.2f} N")
+print(f"Força RMS: {forca_rms:.2f} N")
+
+# Exibição do gráfico da força em uma janela separada
 plt.show()
