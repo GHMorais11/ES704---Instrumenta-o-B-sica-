@@ -19,9 +19,12 @@ with open(nome_arquivo, 'r') as arquivo_csv:
 frequencia = 100  # Frequência em Hz
 tempo = np.arange(len(valores_deflexao)) / frequencia
 
+# converte a deflexão de mm para metro
+valores_deflexao_metro = np.array(valores_deflexao) / 1000
+
 # Cálculo do vetor de pressão
 fator_conversao = 7.6526e-14
-valores_pressao = np.array(valores_deflexao) / fator_conversao
+valores_pressao = np.array(valores_deflexao_metro) / fator_conversao
 
 # Criação do gráfico
 plt.plot(tempo, valores_pressao)
