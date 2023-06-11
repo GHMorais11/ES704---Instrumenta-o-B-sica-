@@ -1,5 +1,11 @@
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Dados
+m = 0.02
+c = 64
+k = 405000
 
 # Ler o arquivo CSV
 data = pd.read_csv('Data10.csv')
@@ -8,16 +14,25 @@ data = pd.read_csv('Data10.csv')
 tensao = data
 
 # Converter a tensão em posição
-posicao = (tensao / 1000) / 200  # Converter mV para V usando o ganho K
+posicao1 = (tensao / 1000) / 200  # Converter mV para V usando o ganho K
 
 # Calcular o tempo em segundos
 tempo = data.index / 1000  # Taxa de aquisição é 1 kHz, então dividimos por 1000
 
 # Calcular a velocidade em função do tempo
-velocidade = posicao.diff() / (tempo[1] - tempo[0])
+velocidade1 = posicao1.diff() / (tempo[1] - tempo[0])
 
 # Calcular a aceleração em função do tempo
-aceleracao = velocidade.diff() / (tempo[1] - tempo[0])
+aceleracao1 = velocidade1.diff() / (tempo[1] - tempo[0])
+
+# Calcular a aceleração do sistema
+aceleracao = ((aceleracao1*m) + (velocidade1*c) + (posicao1*k))/m
+
+# Calcular a velocidade do sistema
+velocidade = aceleracao.trapz() * (tempo[1] - tempo[0])
+
+# Calcular a posição do sistema
+posicao = velocidade.trapz() * (tempo[1] - tempo[0])
 
 # Configurar o layout dos subplots
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True, figsize=(8, 10))
