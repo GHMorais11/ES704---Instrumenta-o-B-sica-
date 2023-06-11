@@ -29,13 +29,14 @@ aceleracao1 = velocidade1.diff() / (tempo[1] - tempo[0])
 aceleracao = ((aceleracao1*m) + (velocidade1*c) + (posicao1*k))/m
 
 # Calcular a velocidade do sistema
-velocidade = aceleracao.trapz() * (tempo[1] - tempo[0])
+
+velocidade = aceleracao.cumsum() * (tempo[1] - tempo[0])
 
 # Calcular a posição do sistema
-posicao = velocidade.trapz() * (tempo[1] - tempo[0])
+posicao = velocidade.cumsum() * (tempo[1] - tempo[0])
 
 # Configurar o layout dos subplots
-fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True, figsize=(8, 10))
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True, figsize=(8, 6))
 
 # Plotar o gráfico posição x tempo
 ax1.plot(tempo, posicao)
